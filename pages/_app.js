@@ -11,7 +11,6 @@ import GlobalStyle from 'styles/styles';
 import 'styles/css/nprogress.css';
 
 import Star from 'components/Star';
-import Footer from 'components/Footer';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -43,7 +42,6 @@ function MyApp({ Component, pageProps, router }) {
             <Component {...pageProps} />
           </MotionBox>
         </AnimatePresence>
-        <Footer />
       </GlobalStyle>
     </ChakraProvider>
   );

@@ -5,7 +5,8 @@ const PageContainer = ({ children, title }) => {
 
   return (
     <VStack
-      h="100vh"
+      minh="100vh"
+      maxh="100%"
       bg={colorMode === 'light' ? 'gray.100' : 'gray.800'}
       transition="background 100ms linear"
     >

@@ -7,7 +7,11 @@ const GlobalStyle = ({ children }) => (
         html {
           scoll-behavior: smooth;
           cursor: default;
+          p {
+            font-color: #ff0000;
+          }
         }
+
         #__next {
           display: flex;
           flex-direction: column;

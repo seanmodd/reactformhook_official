@@ -1,12 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control, react/button-has-type, jsx-a11y/control-has-associated-label, react/self-closing-comp */
+import { Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '@chakra-ui/react';
 
 function Form() {
   const [userInfo, setUserInfo] = useState();
-  const { register, handleSubmit, errors } = useForm();
+  // const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   const onSubmit = (data) => {
+    setUserInfo(data);
+
     console.log(data);
   };
   return (
@@ -18,30 +27,43 @@ function Form() {
           <div className="ui divider"></div>
           <div className="ui form">
             <div className="field">
-              <label>Username</label>
+              {errors.username && (
+                <Text my="5px" color="red" fontWeight="bold" className="error">
+                  Enter your username
+                </Text>
+              )}
               <input
                 type="text"
                 name="username"
                 placeholder="Username"
-                ref={register}
+                {...register('username', { required: true, maxLength: 20 })}
               />
             </div>
+
             <div className="field">
-              <label>Email</label>
+              {errors.email && (
+                <Text my="5px" color="red" fontWeight="bold" className="error">
+                  Enter your email
+                </Text>
+              )}
               <input
                 type="email"
                 name="email"
                 placeholder="Email"
-                ref={register}
+                {...register('email', { required: true, maxLength: 20 })}
               />
             </div>
             <div className="field">
-              <label>Password</label>
+              {errors.password && (
+                <Text my="5px" color="red" fontWeight="bold" className="error">
+                  Enter your password
+                </Text>
+              )}
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
-                ref={register}
+                {...register('password', { required: true, maxLength: 20 })}
               />
             </div>
           </div>
