@@ -27,43 +27,55 @@ function Form() {
           <div className="ui divider"></div>
           <div className="ui form">
             <div className="field">
-              {errors.username && (
-                <Text my="5px" color="red" fontWeight="bold" className="error">
-                  Enter your username
-                </Text>
-              )}
+              <Text my="5px" color="red" fontWeight="bold" className="error">
+                {errors.username?.message}
+              </Text>
               <input
                 type="text"
                 name="username"
                 placeholder="Username"
-                {...register('username', { required: true, maxLength: 20 })}
+                {...register('username', {
+                  required: 'Username is absolutely required!',
+                  maxLength: 20,
+                })}
               />
             </div>
 
             <div className="field">
-              {errors.email && (
-                <Text my="5px" color="red" fontWeight="bold" className="error">
-                  Enter your email
-                </Text>
-              )}
+              <Text my="5px" color="red" fontWeight="bold" className="error">
+                {errors.email?.message}
+              </Text>
+
               <input
                 type="email"
                 name="email"
                 placeholder="Email"
-                {...register('email', { required: true, maxLength: 20 })}
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: 'this is not a valid email',
+                  },
+                  maxLength: 20,
+                })}
               />
             </div>
             <div className="field">
-              {errors.password && (
-                <Text my="5px" color="red" fontWeight="bold" className="error">
-                  Enter your password
-                </Text>
-              )}
+              <Text my="5px" color="red" fontWeight="bold" className="error">
+                {errors.password?.message}
+              </Text>
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
-                {...register('password', { required: true, maxLength: 20 })}
+                {...register('password', {
+                  required: 'Password is required.',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: 'Password is not strong enough...',
+                  },
+                  maxLength: 20,
+                })}
               />
             </div>
           </div>
