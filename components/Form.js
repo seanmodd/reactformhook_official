@@ -70,11 +70,14 @@ function Form() {
                 placeholder="Password"
                 {...register('password', {
                   required: 'Password is required.',
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: 'Password is not strong enough...',
+                  maxLength: {
+                    value: 12,
+                    message: 'Password is too long',
                   },
-                  maxLength: 20,
+                  minLength: {
+                    value: 6,
+                    message: 'Password is too short',
+                  },
                 })}
               />
             </div>
