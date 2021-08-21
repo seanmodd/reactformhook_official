@@ -11,6 +11,7 @@ import GlobalStyle from 'styles/styles';
 import 'styles/css/nprogress.css';
 
 import Star from 'components/Star';
+import { UserContextProvider } from 'context/useContext';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -22,27 +23,28 @@ function MyApp({ Component, pageProps, router }) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <DefaultSeo {...SEO} />
-
-      <GlobalStyle>
-        <Star />
-        <AnimatePresence exitBeforeEnter>
-          <MotionBox
-            key={router.route}
-            animate="enter"
-            as="main"
-            exit="exit"
-            flexGrow={1}
-            initial="initial"
-            variants={{
-              initial: { opacity: 0, y: -10 },
-              enter: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: 10 },
-            }}
-          >
-            <Component {...pageProps} />
-          </MotionBox>
-        </AnimatePresence>
-      </GlobalStyle>
+      <UserContextProvider>
+        <GlobalStyle>
+          <Star />
+          <AnimatePresence exitBeforeEnter>
+            <MotionBox
+              key={router.route}
+              animate="enter"
+              as="main"
+              exit="exit"
+              flexGrow={1}
+              initial="initial"
+              variants={{
+                initial: { opacity: 0, y: -10 },
+                enter: { opacity: 1, y: 0 },
+                exit: { opacity: 0, y: 10 },
+              }}
+            >
+              <Component {...pageProps} />
+            </MotionBox>
+          </AnimatePresence>
+        </GlobalStyle>
+      </UserContextProvider>
     </ChakraProvider>
   );
 }
